@@ -38,11 +38,16 @@ web3.setProvider(TestRPC.provider())
 code = fs.readFileSync('sol/BinaryBets.sol').toString()
 
 // compile the smart contract 
-// var compiledCode = solc.compile(code)
-// var abiDefinition = JSON.parse(compiledCode.contracts[':BinaryBets'].interface)
-// var BinaryBetsContract = web3.eth.contract(abiDefinition)
-// var byteCode = compiledCode.contracts[':BinaryBets'].byteCode
-// var deployedContract = BinaryBetsContract.new({data: byteCode, from: web3.eth.accounts[0], gas: 470000})
+var compiledCode = solc.compile(code)
+var abiDefinition = JSON.parse(compiledCode.contracts[':BinaryBets'].interface)
+var BinaryBetsContract = web3.eth.contract(abiDefinition)
+var byteCode = compiledCode.contracts[':BinaryBets'].byteCode
+var account = web3.eth.getAccounts(function(error, result){ 
+	console.log(result)
+	return result
+})
+console.log("asdfasfasdf " + account)
+// var deployedContract = BinaryBetsContract.new({data: byteCode, from: account, gas: 470000})
 // console.log(deployedContract.address)
 // var contractInstance = BinaryBetsContract.at(deployedContract.address)
 
@@ -53,11 +58,6 @@ var player_1_address = "0xca35b7d915458ef540ade6068dfe2f44e8fa733c" // exmaple a
 var player_2_address = "0x14723a09acff6d2a60dcdf7aa4aff308fddc160c" // example address 
 var final_price = 5000
 // TODO: Verifty that the addresses exist
-
-function getBettors() {
-	var player_address = $("#FILLHERE").val(); // TODO: Get from HTML Form 
-	contractInstance.settle(player_1_address, final_price)
-}
 
 var asset_name = ""
 var asset_previous_date = "2017-10-14" // TODO: Replace fake data
