@@ -69,33 +69,39 @@ var winner = ""
 //TODO: Build the loop that will check for duration of time
 // find the address at starting of bet via JSON call 
 
-request('https://api.coindesk.com/v1/bpi/historical/close.json?start=' + asset_previous_date + '&end=' + asset_previous_date, function(error, response, body){
-	if (!error && response.statusCode == 200) {
-		coindesk_past = JSON.parse(body)
-		asset_previous_price = coindesk_past.bpi["2017-10-14"]
-	} else {
-		console.log("Status Code: " + response.statusCode)
-	}
-})
+function getPriceBefore() {
+	request('https://api.coindesk.com/v1/bpi/historical/close.json?start=' + asset_previous_date + '&end=' + asset_previous_date, function(error, response, body){
+		if (!error && response.statusCode == 200) {
+			coindesk_past = JSON.parse(body)
+			asset_previous_price = coindesk_past.bpi["2017-10-14"]
+		} else {
+			console.log("Status Code: " + response.statusCode)
+		}
+	})
+
+}
 
 // calls the coindesk API 
-request('https://api.coindesk.com/v1/bpi/currentprice.json', function (error, response, body) {
-	if (!error && response.statusCode == 200) {
-		coindesk_current = JSON.parse(body)
-		asset_name = coindesk_current.chartName
-		asset_updated_date = coindesk_current.time.updatedISO
-		var string_asset_updated_price = coindesk_current.bpi.USD.rate
-		var int_updated_price = string_asset_updated_price.replace(/[^\d\.\-]/g, "")
-		asset_updated_price = parseFloat(int_updated_price)
-		if (int_updated_price > asset_previous_price) {
-			winner = "User who bet on rise is the winner"
-		} else {
-			winner = "User who bet on drop is the winner"
+function getPriceAfter() {
+	request('https://api.coindesk.com/v1/bpi/currentprice.json', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			coindesk_current = JSON.parse(body)
+			asset_name = coindesk_current.chartName
+			asset_updated_date = coindesk_current.time.updatedISO
+			var string_asset_updated_price = coindesk_current.bpi.USD.rate
+			var int_updated_price = string_asset_updated_price.replace(/[^\d\.\-]/g, "")
+			asset_updated_price = parseFloat(int_updated_price)
+			if (int_updated_price > asset_previous_price) {
+				winner = "User who bet on rise is the winner"
+			} else {
+				winner = "User who bet on drop is the winner"
+			}
+		} else { 
+			console.log("Status Code: " + response.statusCode)
 		}
-	} else { 
-		console.log("Status Code: " + response.statusCode)
-	}
-})
+	})
+}
+
 
 // renders response to page
 app.get('/', (request, response) => {
