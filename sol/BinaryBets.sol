@@ -47,7 +47,7 @@ contract BinaryBets {
 		_;
 	}
 
-    function BinaryBets() public {
+    function BinaryBets() payable{
         server = msg.sender;
     }
     
