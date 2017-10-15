@@ -38,13 +38,13 @@ web3.setProvider(TestRPC.provider())
 code = fs.readFileSync('sol/BinaryBets.sol').toString()
 
 // compile the smart contract 
-var compiledCode = solc.compile(code)
-var abiDefinition = JSON.parse(compiledCode.contracts[':BinaryBets'].interface)
-var BinaryBetsContract = web3.eth.contract(abiDefinition)
-var byteCode = compiledCode.contracts[':BinaryBets'].byteCode
-var deployedContract = BinaryBetsContract.new({data: byteCode, from: web3.eth.accounts[0], gas: 470000})
-console.log(deployedContract.address)
-var contractInstance = BinaryBetsContract.at(deployedContract.address)
+// var compiledCode = solc.compile(code)
+// var abiDefinition = JSON.parse(compiledCode.contracts[':BinaryBets'].interface)
+// var BinaryBetsContract = web3.eth.contract(abiDefinition)
+// var byteCode = compiledCode.contracts[':BinaryBets'].byteCode
+// var deployedContract = BinaryBetsContract.new({data: byteCode, from: web3.eth.accounts[0], gas: 470000})
+// console.log(deployedContract.address)
+// var contractInstance = BinaryBetsContract.at(deployedContract.address)
 
 
 
