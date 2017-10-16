@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bitcoin Binary Betting</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <br/>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-push-2" style="text-align: center">
+          <h3>Bitcoin Binary Betting</h3>
+          <hr/>
+        </div>
+      </div>
+
+      <div class="container" id="createBet">
+        <div style="width: 50%">
+          <h4 class="text-center">Create a Bet</h4>
+          <em></em>
+          <!--<div style="display: block; margin: 0; float: left; padding-left: 25%">-->
+          <div>
+            <form>
+            High Bettor Address<br/>
+            <input type="text" id="highAddr" size="70"><br/>
+            Low Bettor Address<br/>
+            <input type="text" id="lowAddr" size="70"><br/>
+            Expiry Timestamp<br/>
+            <input type="text" id="expiry" size="70"><br/>
+            Ante (szabo)<br/>
+            <input type="text" id="ante" size="70"><br/>
+            <button type="button" class="button-primary" id="createBetButton">Create</button>
+          </form>
+          </div>
+        </div>
+      </div>
+
+      <br/>
+
+      <div class="container" id="sendBet">
+        <h4 class="text-center">Send a Bet</h4>
+        <em>Remember to send the mutually agreed amount of ETH.</em><br/><br/>
+        <form>
+          Bet ID<br/>
+          <input type="text" id="betId" size="70"><br/>
+          Amount (szabo)<br/>
+          <input type="text" id="betAmount" size="70"><br/>
+          <button type="button" class="button-primary" id="sendBetButton">Bet</button>
+        </form>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
